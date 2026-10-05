@@ -1,0 +1,30 @@
+info:
+  name: "034 Unknown Wager Wallet"
+  type: http
+  seq: 34
+http:
+  method: POST
+  url: "{{baseUrl}}/wallets/{{missingMemberId}}/wagers"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "amount": "1"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", function () { expect(res.status).to.equal(404); });
+        test("error", function () { expect(res.body["error"]).to.equal("member_or_wallet_not_found"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 404. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

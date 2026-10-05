@@ -1,0 +1,31 @@
+info:
+  name: "059 Insufficient Withdrawal Balance"
+  type: http
+  seq: 59
+http:
+  method: POST
+  url: "{{baseUrl}}/withdrawals"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "memberId": "{{memberId}}",
+        "amount": "1"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 422", function () { expect(res.status).to.equal(422); });
+        test("error", function () { expect(res.body["error"]).to.equal("insufficient_funds"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 422. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

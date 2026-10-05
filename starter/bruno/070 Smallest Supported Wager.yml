@@ -1,0 +1,30 @@
+info:
+  name: "070 Smallest Supported Wager"
+  type: http
+  seq: 70
+http:
+  method: POST
+  url: "{{baseUrl}}/wallets/{{walletId}}/wagers"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "amount": "0.000000000000000001"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 201", function () { expect(res.status).to.equal(201); });
+        test("balance", function () { expect(res.body["balance"]).to.equal("0.300000000000000002"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 201. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

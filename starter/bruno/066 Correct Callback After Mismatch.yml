@@ -1,0 +1,32 @@
+info:
+  name: "066 Correct Callback After Mismatch"
+  type: http
+  seq: 66
+http:
+  method: POST
+  url: "{{baseUrl}}/psp/callbacks"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "pspRef": "{{preciseA}}",
+        "status": "completed",
+        "amount": "0.100000000000000001"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", function () { expect(res.status).to.equal(200); });
+        test("status", function () { expect(res.body["status"]).to.equal("Completed"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 200. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

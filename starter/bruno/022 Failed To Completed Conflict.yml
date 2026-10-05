@@ -1,0 +1,32 @@
+info:
+  name: "022 Failed To Completed Conflict"
+  type: http
+  seq: 22
+http:
+  method: POST
+  url: "{{baseUrl}}/psp/callbacks"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "pspRef": "{{failedRef}}",
+        "status": "completed",
+        "amount": "20"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 409", function () { expect(res.status).to.equal(409); });
+        test("error", function () { expect(res.body["error"]).to.equal("invalid_funding_transition"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 409. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

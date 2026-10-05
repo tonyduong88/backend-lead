@@ -1,0 +1,39 @@
+info:
+  name: "084 Overflow - Create Member"
+  type: http
+  seq: 84
+http:
+  method: POST
+  url: "{{baseUrl}}/members"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "username": "{{username}}"
+      }
+runtime:
+  scripts:
+    - type: before-request
+      code: |-
+        bru.setVar("username", "review-" + Date.now() + "-" + Math.random().toString(36).slice(2, 10));
+    - type: after-response
+      code: |-
+        if (res.status === 201) {
+          bru.setVar("memberId", res.body.member.id);
+          bru.setVar("walletId", res.body.wallet.id);
+        }
+    - type: tests
+      code: |-
+        test("HTTP 201", function () { expect(res.status).to.equal(201); });
+        test("Fresh zero wallet", function () { expect(res.body.wallet.balance).to.equal("0.000000000000000000"); expect(res.body.member.username).to.equal(bru.getVar("username")); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Starts a fresh scenario. Saves memberId and walletId as runtime variables. Username is regenerated on every send; no existing wallet is reset or deleted.
