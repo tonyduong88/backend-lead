@@ -1,7 +1,6 @@
 # BE Lead — Complete Mini Wallet collection
 
-This is the full reviewer-facing Bruno collection for the current implementation. It uses **OpenCollection YAML**. The smaller `.bru` and Postman JSON collections are available in the parent folder.
-
+This is the full reviewer-facing Bruno collection for the current implementation. It uses **OpenCollection YAML**.
 ## Open and run
 
 1. Set up the application using [the English setup guide](../../docs/SETUP.md) and start it from `starter/` with `npm run dev`.
