@@ -24,7 +24,7 @@ For the full current Bruno collection, open [`starter/bruno`](../starter/bruno/R
 
 Import [mini-wallet.postman_collection.json](../starter/bruno/mini-wallet.postman_collection.json) into a compatible client, or send the requests below with your preferred HTTP tool. The collection contains all 20 requests and response scripts. It stores memberId, walletId and the relevant PSP references in collection variables. If an importer does not preserve scripts, copy those values from responses manually.
 
-Bruno can also open `starter/bruno` as a collection and select Local. The `.bru` files do not include the JSON collection's two additional username-type/length cases numbered 07/08; the automated collection test uses the JSON file. Do not import `bruno.json` as a Postman collection.
+Bruno can also open `starter/bruno` as a collection and select Local.
 
 | Step | Action | Expected result |
 | --- | --- | --- |
