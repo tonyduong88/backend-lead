@@ -54,6 +54,6 @@ requests and executed the existing scripts with `bru`, `test` and `expect`
 compatibility methods. This verifies the collection's HTTP behavior and assertions,
 but does not verify the Bruno UI or its importer. The existing Jest
 `apiCollection.test.ts` independently passed the older 20-request Postman JSON.
-See [Verification results](../../../docs/TESTING.md#verification-results) for the environment and limits.
+See [Verification results](../../docs/TESTING.md#verification-results) for the environment and limits.
 
 On an actual run, unexpected 400 usually means malformed input or a missing runtime variable; 409 on Create Member can mean a stale/manual username; unexpected 422 requires checking the scenario's balance/turnover; connection errors require checking the server/baseUrl. Restart from the current scenario's Create Member when earlier steps were skipped or failed.
