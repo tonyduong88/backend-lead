@@ -20,7 +20,7 @@ Source: [routes](../starter/src/routes), [services](../starter/src/services), [m
 
 ## A complete example
 
-For the full current Bruno collection, open [`starter/bruno/import`](../starter/bruno/README.md), select Local and run in numbered order. Its 96 OpenCollection YAML requests include the main flow, validation, precision, turnover carryover and overflow scenarios, with dynamic fixture IDs and response assertions. On 4 October, all 96 YAML requests and 239 assertions passed against the running API using a Node harness; Bruno UI compatibility was not exercised. The JSON collection is independently covered by Jest.
+For the full current Bruno collection, open [`starter/bruno`](../starter/bruno/README.md), select Local and run in numbered order. Its 96 OpenCollection YAML requests include the main flow, validation, precision, turnover carryover and overflow scenarios, with dynamic fixture IDs and response assertions. On 4 October, all 96 YAML requests and 239 assertions passed against the running API using a Node harness; Bruno UI compatibility was not exercised. The JSON collection is independently covered by Jest.
 
 Import [mini-wallet.postman_collection.json](../starter/bruno/mini-wallet.postman_collection.json) into a compatible client, or send the requests below with your preferred HTTP tool. The collection contains all 20 requests and response scripts. It stores memberId, walletId and the relevant PSP references in collection variables. If an importer does not preserve scripts, copy those values from responses manually.
 
