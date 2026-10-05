@@ -5,7 +5,7 @@ This is the full reviewer-facing Bruno collection for the current implementation
 ## Open and run
 
 1. Set up the application using [the English setup guide](../../docs/SETUP.md) and start it from `starter/` with `npm run dev`.
-2. In a Bruno version supporting OpenCollection YAML (3.0+), choose **Open Collection** and select this `starter/bruno/import` folder, whose root is `opencollection.yml`. Do not select the parent `bruno` directory or import this as Postman JSON.
+2. In a Bruno version supporting OpenCollection YAML (3.0+), choose **Open Collection** and select this `starter/bruno` folder, whose root is `opencollection.yml`. Do not select the parent `bruno` directory or import this as Postman JSON.
 3. Select the **Local** environment. `baseUrl` defaults to `http://localhost:3000`; change it if your local API uses another port. No credentials are required by the starter API.
 4. Use Collection Runner to execute all requests **sequentially, in numeric order**. Do not run them in parallel. Scripts must be enabled: creation responses supply IDs for subsequent requests.
 5. Inspect each request's Tests result. Expected 400/404/409/422 responses are successful checks when their status and error assertions pass.
