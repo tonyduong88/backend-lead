@@ -52,6 +52,6 @@ All commands run from [`starter/`](../starter), not from this documentation fold
 | [test](../starter/test) | Seven Jest suites and shared fixtures/reconciliation helpers |
 | [scripts](../starter/scripts) | Database lifecycle, guarded verification, benchmark and recovery scripts |
 | [bruno/mini-wallet.postman_collection.json](../starter/bruno/mini-wallet.postman_collection.json) | Twenty-request example flow with response assertions |
-| [bruno/import](../starter/bruno/import/README.md) | Full 96-request Bruno YAML collection; independent scenarios, dynamic IDs and response assertions; 96 requests and 239 assertions verified over HTTP with a Node harness |
+| [bruno](../starter/bruno/README.md) | Full 96-request Bruno YAML collection; independent scenarios, dynamic IDs and response assertions; 96 requests and 239 assertions verified over HTTP with a Node harness |
 
 Keep `starter/` and `docs/` next to each other when extracting or moving the submission so documentation links remain valid.
