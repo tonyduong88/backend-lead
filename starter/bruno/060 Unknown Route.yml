@@ -1,0 +1,22 @@
+info:
+  name: "060 Unknown Route"
+  type: http
+  seq: 60
+http:
+  method: GET
+  url: "{{baseUrl}}/not-a-route"
+  headers:
+    - name: Accept
+      value: application/json
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", function () { expect(res.status).to.equal(404); });
+        test("error", function () { expect(res.body["error"]).to.equal("route_not_found"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 404. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

@@ -1,0 +1,32 @@
+info:
+  name: "015 Withdrawal Locked By One Cent"
+  type: http
+  seq: 15
+http:
+  method: POST
+  url: "{{baseUrl}}/withdrawals"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "memberId": "{{memberId}}",
+        "amount": "10"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 422", function () { expect(res.status).to.equal(422); });
+        test("error", function () { expect(res.body["error"]).to.equal("turnover_locked"); });
+        test("outstandingTurnover", function () { expect(res.body["outstandingTurnover"]).to.equal("0.010000000000000000"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 422. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

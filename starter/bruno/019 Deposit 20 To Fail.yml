@@ -1,0 +1,36 @@
+info:
+  name: "019 Deposit 20 To Fail"
+  type: http
+  seq: 19
+http:
+  method: POST
+  url: "{{baseUrl}}/deposits"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "memberId": "{{memberId}}",
+        "amount": "20",
+        "turnoverMultiplier": 1
+      }
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        if (res.status === 201) { bru.setVar("failedRef", res.body.pspRef); bru.setVar("fundingId", res.body.id); }
+    - type: tests
+      code: |-
+        test("HTTP 201", function () { expect(res.status).to.equal(201); });
+        test("status", function () { expect(res.body["status"]).to.equal("Pending"); });
+        test("Generated identifiers", function () { expect(res.body.id).to.be.a("string").and.not.empty; expect(res.body.pspRef).to.be.a("string").and.not.empty; });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 201. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

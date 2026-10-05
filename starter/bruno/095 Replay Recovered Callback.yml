@@ -1,0 +1,32 @@
+info:
+  name: "095 Replay Recovered Callback"
+  type: http
+  seq: 95
+http:
+  method: POST
+  url: "{{baseUrl}}/psp/callbacks"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "pspRef": "{{overflowRef}}",
+        "status": "completed",
+        "amount": "1"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", function () { expect(res.status).to.equal(200); });
+        test("status", function () { expect(res.body["status"]).to.equal("Completed"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 200. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

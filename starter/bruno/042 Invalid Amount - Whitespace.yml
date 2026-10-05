@@ -1,0 +1,32 @@
+info:
+  name: "042 Invalid Amount - Whitespace"
+  type: http
+  seq: 42
+http:
+  method: POST
+  url: "{{baseUrl}}/deposits"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "memberId": "{{memberId}}",
+        "amount": " 1",
+        "turnoverMultiplier": 0
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 400", function () { expect(res.status).to.equal(400); });
+        test("error", function () { expect(res.body["error"]).to.equal("validation_error"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 400. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

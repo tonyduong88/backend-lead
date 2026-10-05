@@ -1,0 +1,32 @@
+info:
+  name: "092 Free Balance Capacity"
+  type: http
+  seq: 92
+http:
+  method: POST
+  url: "{{baseUrl}}/withdrawals"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "memberId": "{{memberId}}",
+        "amount": "1"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 201", function () { expect(res.status).to.equal(201); });
+        test("status", function () { expect(res.body["status"]).to.equal("Pending"); });
+        test("balance", function () { expect(res.body["balance"]).to.equal("999999999999999998.999999999999999999"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 201. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

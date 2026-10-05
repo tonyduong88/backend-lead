@@ -1,0 +1,8 @@
+name: Local
+variables:
+  - name: baseUrl
+    value: http://localhost:3000
+  - name: missingMemberId
+    value: 00000000-0000-4000-8000-000000000000
+  - name: missingPspRef
+    value: bruno-deliberately-unknown-reference

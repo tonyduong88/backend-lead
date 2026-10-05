@@ -1,0 +1,24 @@
+info:
+  name: "096 Recovered Replay Does Not Overflow"
+  type: http
+  seq: 96
+http:
+  method: GET
+  url: "{{baseUrl}}/members/{{memberId}}/wallet"
+  headers:
+    - name: Accept
+      value: application/json
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 200", function () { expect(res.status).to.equal(200); });
+        test("balance", function () { expect(res.body["balance"]).to.equal("999999999999999999.999999999999999999"); });
+        test("requiredTurnover", function () { expect(res.body["requiredTurnover"]).to.equal("0.000000000000000000"); });
+        test("accruedTurnover", function () { expect(res.body["accruedTurnover"]).to.equal("0.000000000000000000"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 200. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

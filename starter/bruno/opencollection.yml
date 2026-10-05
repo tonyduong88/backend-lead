@@ -1,0 +1,9 @@
+opencollection: 1.0.0
+info:
+  name: BE Lead - Complete Mini Wallet
+bundled: false
+extensions:
+  bruno:
+    ignore:
+      - node_modules
+      - .git

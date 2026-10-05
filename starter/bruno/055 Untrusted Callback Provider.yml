@@ -1,0 +1,33 @@
+info:
+  name: "055 Untrusted Callback Provider"
+  type: http
+  seq: 55
+http:
+  method: POST
+  url: "{{baseUrl}}/psp/callbacks"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "pspRef": "unknown",
+        "status": "completed",
+        "amount": "1",
+        "provider": "attacker"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 400", function () { expect(res.status).to.equal(400); });
+        test("error", function () { expect(res.body["error"]).to.equal("validation_error"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 400. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

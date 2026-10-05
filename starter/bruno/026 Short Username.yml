@@ -1,0 +1,30 @@
+info:
+  name: "026 Short Username"
+  type: http
+  seq: 26
+http:
+  method: POST
+  url: "{{baseUrl}}/members"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "username": "x"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 400", function () { expect(res.status).to.equal(400); });
+        test("error", function () { expect(res.body["error"]).to.equal("validation_error"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 400. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.

@@ -1,0 +1,32 @@
+info:
+  name: "052 Unknown Callback Reference"
+  type: http
+  seq: 52
+http:
+  method: POST
+  url: "{{baseUrl}}/psp/callbacks"
+  headers:
+    - name: Accept
+      value: application/json
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "pspRef": "{{missingPspRef}}",
+        "status": "completed",
+        "amount": "1"
+      }
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("HTTP 404", function () { expect(res.status).to.equal(404); });
+        test("error", function () { expect(res.body["error"]).to.equal("funding_not_found"); });
+settings:
+  encodeUrl: true
+docs:
+  type: text/markdown
+  content: |-
+    Expected HTTP 404. Run in numbered order after this scenario's Create Member request. Amounts and monetary assertions use strings.
